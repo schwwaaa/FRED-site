@@ -1,6 +1,6 @@
 // Alpha sign-up form -> Google Form, no server needed.
 //
-// To wire it up:
+// Wired to the "FRED alpha testers" form. To point it at a different form:
 //   1. Make a Google Form with these questions (any order):
 //        Email (short answer), Name (short answer), Computer (dropdown), Use (checkboxes),
 //        MIDI controller (short answer), Notes (paragraph), Acknowledged (checkbox, optional).
@@ -10,15 +10,15 @@
 //   3. Paste the pieces below. Use the same URL with "viewform" changed to "formResponse".
 //      Leave a field's id as "" to not send it.
 const FORM = {
-  action: "", // e.g. "https://docs.google.com/forms/d/e/1FAIpQLSc_EXAMPLE/formResponse"
+  action: "https://docs.google.com/forms/d/e/1FAIpQLSdkLOCa4F2qv4vy64LUA3gBa6Jwchvu23THxgdJmOr5ggWnEQ/formResponse",
   fields: {
-    email: "",    // e.g. "entry.1111111"
-    name: "",
-    computer: "",
-    uses: "",     // a checkbox group: every ticked box is sent under this one id
-    midi: "",
-    notes: "",
-    ack: "",
+    email: "entry.721796648",
+    name: "entry.1731097937",
+    computer: "entry.1488114031",
+    uses: "entry.1669922843", // a checkbox group: every ticked box is sent under this one id
+    midi: "entry.1315125638",
+    notes: "entry.1998489569",
+    ack: "entry.582857801",
   },
 };
 
