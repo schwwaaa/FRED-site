@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>FRED — Fast Response Effects Deck</title>
+<style>
+@font-face { font-family: "Comic Neue"; font-weight: 400; src: url(fonts/comic-neue-400.woff2) format("woff2"); }
+@font-face { font-family: "Comic Neue"; font-weight: 700; src: url(fonts/comic-neue-700.woff2) format("woff2"); }
+@page { size: 8.5in 11in; margin: 0; }
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+:root { --bg: #05052e; --panel: #0e0e5c; --panel2: #07073d; --cyan: #00ffff; --mag: #ff00ff; --yel: #ffff80; --btn: linear-gradient(#ffff99, #ffcc00); --navy: #000080; }
+html, body { width: 8.5in; height: 11in; background: var(--bg); }
+body { font-family: "Comic Neue", "Comic Sans MS", sans-serif; color: #fff; font-size: 9pt; line-height: 1.27;
+  background-image: radial-gradient(1.5px 1.5px at 12px 18px, #fff, transparent), radial-gradient(1px 1px at 60px 70px, #ffff80, transparent), radial-gradient(1.5px 1.5px at 100px 30px, #88ccff, transparent), radial-gradient(1px 1px at 40px 100px, #fff, transparent); background-size: 120px 120px; }
+.page { width: 8.5in; height: 11in; display: flex; flex-direction: column; overflow: hidden; }
+
+.hdr { background: linear-gradient(90deg, #ff00ff, #6600ff 40%, #0066ff); border-bottom: 3px solid var(--cyan); padding: 6px 0.4in 6px; display: flex; align-items: center; gap: 16px; }
+.brand b { display: block; font-size: 50pt; line-height: .9; font-weight: 700; letter-spacing: .08em; background: linear-gradient(90deg, #ff0000, #ff9900, #ffff00, #00ff00, #00ffff, #3366ff, #ff00ff); -webkit-background-clip: text; background-clip: text; color: transparent; filter: drop-shadow(3px 3px 0 #000); }
+.brand .sub { display: flex; align-items: baseline; gap: 10px; margin-top: 2px; }
+.brand .sub span { font-weight: 700; font-size: 9.5pt; color: #ffff00; letter-spacing: .06em; }
+.brand .sub i { font-weight: 700; font-size: 10pt; color: var(--cyan); }
+.keys { margin-left: auto; align-self: center; display: flex; flex-wrap: wrap; gap: 6px; justify-content: flex-end; max-width: 3.1in; }
+.btn { display: inline-block; font-weight: 700; font-size: 8.5pt; color: var(--navy); background: var(--btn); border: 3px outset #ffffcc; border-color: #ffffcc #806600 #806600 #ffffcc; padding: 1px 9px; }
+.btn.red { background: linear-gradient(#ff9a9a, #e00000); color: #fff; border-color: #ffd0d0 #700000 #700000 #ffd0d0; }
+.hazard { height: 9px; background: repeating-linear-gradient(45deg, #000 0 12px, #ffd800 12px 24px); }
+
+.main { padding: 8px 0.4in 0; flex: 1; display: flex; flex-direction: column; }
+.box { background: var(--panel); border: 4px ridge; border-color: var(--cyan) var(--mag) var(--mag) var(--cyan); padding: 6px 9px; }
+.box.dark { background: var(--panel2); }
+.fig { border: 4px ridge; border-color: var(--cyan) var(--mag) var(--mag) var(--cyan); background: #000; line-height: 0; }
+.fig img { width: 100%; display: block; }
+figcaption { font-size: 6.8pt; color: var(--yel); margin-top: 3px; line-height: 1.2; }
+
+.lead { display: grid; grid-template-columns: 1.15fr 1fr; gap: 14px; align-items: stretch; }
+.lead h2 { font-size: 21pt; line-height: 1.02; font-weight: 700; text-shadow: 3px 3px 0 var(--mag); }
+.dek { color: var(--yel); font-weight: 700; font-size: 10.2pt; margin-top: 3px; }
+.lead p.body { margin-top: 4px; }
+
+.cols { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-top: 9px; }
+h3 { font-size: 11.5pt; font-weight: 700; color: #ffff00; line-height: 1.1; margin-bottom: 5px; border-bottom: 2px dashed var(--cyan); padding-bottom: 2px; }
+h3 small { display: block; font-size: 6.6pt; letter-spacing: .14em; text-transform: uppercase; color: var(--cyan); margin-bottom: 1px; }
+ol { padding-left: 15px; }
+li { margin-bottom: 3px; }
+li::marker { color: var(--mag); font-weight: 700; }
+.tbl { width: 100%; border-collapse: collapse; font-size: 8.8pt; }
+.tbl td { border-bottom: 1px dotted var(--cyan); padding: 2px 0; vertical-align: top; }
+.tbl td:first-child { font-weight: 700; color: #ffff00; white-space: nowrap; padding-right: 7px; }
+p + p { margin-top: 4px; }
+b.hl { color: #ffff00; }
+kbd, code, .kbd { font-family: "Comic Neue", sans-serif; font-weight: 700; font-size: 8pt; color: var(--cyan); border: 1px solid var(--cyan); padding: 0 4px; background: #000; }
+
+.bottom { display: grid; grid-template-columns: 1.7fr 1fr; gap: 10px; margin-top: 9px; align-items: start; }
+.side { display: flex; flex-direction: column; gap: 5px; }
+.side h4 { font-size: 9.8pt; font-weight: 700; color: #ffff00; text-transform: uppercase; letter-spacing: .05em; margin-bottom: 1px; }
+.side p { font-size: 8.3pt; line-height: 1.24; }
+.foot { margin-top: auto; }
+.foot .tag { text-align: center; font-weight: 700; font-size: 8pt; letter-spacing: .12em; color: var(--yel); padding: 3px 0 4px; text-transform: uppercase; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="hdr">
+    <div class="brand">
+      <b>FRED</b>
+      <div class="sub"><span>Fast Response Effects Deck</span><i>by schwwaaa</i></div>
+    </div>
+    <div class="keys"><span class="btn">Presets</span><span class="btn">ON AIR</span><span class="btn red">Stop all</span><span class="btn">+ Add</span></div>
+  </div>
+  <div class="hazard"></div>
+
+  <div class="main">
+    <section class="lead">
+      <div class="box">
+        <h2>Every sound you own, one keystroke away</h2>
+        <p class="dek">A local soundboard that mixes with your microphone and feeds Discord, Steam and Audacity.</p>
+        <p class="body">FRED holds your library of sounds, lets you tag, colour and search them in an instant, and plays them the moment you ask. Shape any sound with the waveform editor, run voice effects on your mic, the samples or the whole mix, and send the result to any app that accepts an audio input. Everything runs on your own computer: no accounts, no subscriptions, no network.</p>
+        <p class="body">Built for the live moment: a Draft/Live switch and ON AIR button keep unapproved sounds off the air, the mic is always off at launch, and your session autosaves so a crash costs you nothing.</p>
+      </div>
+      <figure>
+        <div class="fig"><img src="fig-editor.png" alt="Waveform editor with effects panel"></div>
+        <figcaption>The editor: click to place a playhead, set In and Out, fade swells, 8-band EQ and per-sound effects.</figcaption>
+      </figure>
+    </section>
+
+    <section class="cols">
+      <div class="box dark">
+        <h3><small>Basic operation</small>Get playing in five steps</h3>
+        <ol>
+          <li><b class="hl">Add.</b> Press <b>+ Add</b> and choose WAV, MP3, FLAC, OGG or AAC files.</li>
+          <li><b class="hl">Tag.</b> Click a name to rename it in place. The pencil sets tags and colour. Filter with chips and dots, or search (<kbd>/</kbd>).</li>
+          <li><b class="hl">Play.</b> Click a card. A second click restarts it (or stops, or layers, per card). <kbd>Esc</kbd> stops all. Drag a card to reorder.</li>
+          <li><b class="hl">Key it.</b> Click the keyboard chip, then press a key <i>or hit a MIDI pad</i>. Or press <b>Auto map</b> to do the whole board in order.</li>
+          <li><b class="hl">Shape it.</b> <b>Edit waveform</b>: click to place a playhead, <kbd>Space</kbd> plays and pauses, <kbd>I</kbd> <kbd>O</kbd> set In and Out there.</li>
+        </ol>
+      </div>
+      <div class="box dark">
+        <h3><small>Safety first</small>Keep the wrong thing off the air</h3>
+        <table class="tbl">
+          <tr><td>LIVE / DRAFT</td><td>Drafts play on your Monitor only. Make a sound Live to allow it out.</td></tr>
+          <tr><td>ON AIR</td><td>Off at launch. While off, nothing reaches the main output.</td></tr>
+          <tr><td>MIC</td><td>Off at every launch and never restored. <kbd>Ctrl</kbd>+<kbd>M</kbd> toggles.</td></tr>
+          <tr><td>MONITOR</td><td>Your headphones only. Your mic is never played back into it.</td></tr>
+        </table>
+      </div>
+      <div class="box dark">
+        <h3><small>Effects &amp; layout</small>Sixteen effects, your layout</h3>
+        <p>Gate, high/low-pass, <b class="hl">8-band EQ</b>, compressor, pitch, robot, chorus, flanger, phaser, tremolo, auto-wah, distortion, bitcrush, radio, echo and reverb, on the mic, the samples, the master or any single sound. Save favourites as presets.</p>
+        <p>Show the board as cards in any <b class="hl">grid</b> (4&times;5, 8&times;8&hellip; to match your controller), a compact list, or <b class="hl">lanes</b> like tracks in Ableton. Drag sounds into your own order.</p>
+        <p><b class="hl">MIDI pads</b> play sounds too and are named by place (R2C3). Any grid controller works: FRED knows APC and Launchpad, and learns others in 30 seconds. Pads light up with the sound&rsquo;s colour: bright for Live, dim or pulsing for Draft, white while playing.</p>
+      </div>
+    </section>
+
+    <section class="bottom">
+      <figure>
+        <div class="fig"><img src="fig-board.png" alt="FRED sample board and mixer"></div>
+        <figcaption>The board as a 4&times;3 grid: LIVE/DRAFT badges, key and pad chips (1 &middot; R1C1), colour tags, a playhead on the playing sound, transport and the mixer.</figcaption>
+      </figure>
+      <div class="side">
+        <div class="box dark">
+          <h4>Into Discord, Steam &amp; Audacity</h4>
+          <p>Those apps choose an <i>input device</i>. On macOS press <b>?</b> &rarr; <b>Install FRED Mic</b> (one password prompt), send <b>Main out</b> to it, and pick <b>FRED Mic</b> as the microphone in the other app. Only your mic and Live, ON AIR samples come out. On Windows FRED guides a free VB-CABLE install. Set <b>Monitor</b> to your headphones.</p>
+        </div>
+        <div class="box dark">
+          <h4>Never lose your place</h4>
+          <p>Your session autosaves every second and returns after a restart or crash. <b>Presets</b> save the whole project: sounds, edits, lanes, levels and effects. MIDI pads, and global hotkeys in the desktop app, work while another app has focus.</p>
+        </div>
+        <div class="box dark">
+          <h4>Run it</h4>
+          <p><code>npm install</code>, then <code>npm run dev</code>, or <code>npm run build</code> for FRED.app and a .dmg. Needs Rust and Node. Tested on macOS (Apple silicon).</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="foot">
+      <div class="tag">&#9733; FRED &middot; local code, local sounds, no cloud &#9733;</div>
+    </div>
+  </div>
+  <div class="hazard"></div>
+</div>
+</body>
+</html>
